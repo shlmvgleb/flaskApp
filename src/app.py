@@ -66,20 +66,17 @@ def post_delete(id):
 
 
 @app.route('/posts/<int:id>/update', methods=['GET', 'POST'])
-def post_update(id):
+ article = Article.query.get(id)
     if request.method == 'POST':
-        tittle = request.form['tittle']
-        author = request.form['author']
-        text = request.form['text']
-        article = Article(tittle=tittle, author=author, text=text)
+        article.tittle = request.form['tittle']
+        article.author = request.form['author']
+        article.text = request.form['text']
         try:
-            db.session.add(article)
             db.session.commit()
             return redirect('/posts')
         except:
             return 'При добавлении произошла ошибка'
     else:
-        article = Article.query.get(id)
         return render_template('post_update.html', article=article)
 
 
