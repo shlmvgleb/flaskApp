@@ -79,7 +79,7 @@ def post_update(id):
             return 'При добавлении произошла ошибка'
     else:
         return render_template('post_update.html', article=article)
-
+db.create_all()
 
 if __name__ == '__main__':
     app.run(debug=True)
