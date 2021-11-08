@@ -66,7 +66,7 @@ def post_delete(id):
 
 
 @app.route('/posts/<int:id>/update', methods=['GET', 'POST'])
-def posts(id):
+def post_update(id):
     article = Article.query.get(id)
     if request.method == 'POST':
         article.tittle = request.form['tittle']
